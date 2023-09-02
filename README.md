@@ -1,4 +1,4 @@
-# DNAGPT
+# DNAGPT: A Generalized Pre-trained Tool for Versatile DNA Sequence Analysis Tasks
 
 ## Download code and pre-trained weights
 
