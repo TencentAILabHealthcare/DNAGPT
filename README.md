@@ -1,6 +1,6 @@
 # DNAGPT: A Generalized Pre-trained Tool for Versatile DNA Sequence Analysis Tasks
 
-The official implementation of [DNAGPT: A Generalized Pre-trained Tool for Versatile DNA Sequence Analysis Tasks](https://www.biorxiv.org/content/10.1101/2023.07.11.548628v2.full.pdf)
+The official implementation of [DNAGPT: A Generalized Pre-trained Tool for Versatile DNA Sequence Analysis Tasks](https://www.biorxiv.org/content/10.1101/2023.07.11.548628v2.full.pdf).
 ## Download code and pre-trained weights
 
 ### Download codes
