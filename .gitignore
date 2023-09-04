@@ -112,4 +112,4 @@ venv.bak/
 # weights
 /assets
 /tests
-/checkpoints
+/checkpoints/*.pth
