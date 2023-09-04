@@ -3,20 +3,19 @@
 # Author: chenchenqin
 # Data: 2023/9/4 12:01
 import argparse
-import os.path
+import os
 
 import torch
 
-from tgnn.model import DNAGPT
-from tgnn.tokenizer import KmerTokenizer
-from tgnn.utils import seed_all_rng
+from dna_gpt.model import DNAGPT
+from dna_gpt.tokenizer import KmerTokenizer
+from dna_gpt.utils import seed_all_rng
 
 
 def get_model(model_name):
     special_tokens = (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] +
                       ["+", '-', '*', '/', '=', "&", "|", "!"] +
                       ['M', 'B'] + ['P'] + ['R', 'I', 'K', 'L', 'O', 'Q', 'S', 'U', 'V'] + ['W', 'Y', 'X', 'Z'])
-
     if model_name in ('dna_gpt0.1b_m',):
         tokenizer = KmerTokenizer(6, special_tokens, dynamic_kmer=False)
     else:
@@ -33,7 +32,7 @@ def load_model(model, weight_path, device=None, dtype=None):
         model.load_state_dict(state['model'])
     else:
         model.load_state_dict(state)
-
+    print(f"loadding model weights from {weight_path}")
     model.to(device=device, dtype=dtype)
     model = model.eval()
     return model
@@ -55,10 +54,11 @@ def main(args):
     print(f"max length is {max_len}")
     model = load_model(model, weight_path, device=device, dtype=dtype)
     prompt_ids = tokenizer.encode(prompt, max_len=max_len, device=device)
+    print(f"prompt token ids: {prompt_ids.tolist()}")
     max_new_tokens = max_len - len(prompt_ids)
     x = prompt_ids[None, :]
-    temperature = 1.0
-    top_k = 200
+    temperature = args.temperature
+    top_k = args.topk
     for k in range(num_samples):
         y = model.generate(x,
                            max_new_tokens,
@@ -74,10 +74,12 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='sample dna gpt model generation')
-    parser.add_argument('--input', '-i', default='<R>AGAGAAAAGAGTGGAGCCTCG', help='input prompt text')
-    parser.add_argument('--name', '-n', default='dna_gpt0.1b_s', help='type of the model')
+    parser.add_argument('--input', '-i', default='<R>TGAACAGAACGGCATGTA', help='input prompt text')
+    parser.add_argument('--name', '-n', default='dna_gpt0.1_m', help='type of the model')
     parser.add_argument('--num_samples', '-ns', type=int, default=10, help='path to the weight')
-    parser.add_argument('--max_len', '-ml', default=512, help='path to the weight')
+    parser.add_argument('--max_len', '-ml', type=int, default=128, help='path to the weight')
+    parser.add_argument('--temperature', type=float, default=1.0, help='path to the weight')
+    parser.add_argument('--topk', type=int, default=196, help='path to the weight')
     parser.add_argument('--seed', default=42, type=int, help='random seed for sampling')
     parser.add_argument('--weight', '-w', default=None, help='path to the weight')
     parser.add_argument('--device', default=None, help='device of the model, cuda or cpu')

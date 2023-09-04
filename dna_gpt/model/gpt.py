@@ -232,7 +232,9 @@ class GPT(nn.Module):
         return x
 
     @torch.no_grad()
-    def generate(self, idx, max_new_tokens,
+    def generate(self,
+                 idx,
+                 max_new_tokens,
                  temperature=1.0,
                  do_sample=False,
                  top_k=None,
