@@ -13,7 +13,7 @@ git clone https://github.com/TencentAILabHealthcare/DNAGPT.git
 ### Download pre-trained weights
 You can download the weights from
 * [Google Drive](https://drive.google.com/drive/folders/10UPPx6V13oQW6knuLV7d8SRIA3D6hYor?usp=drive_link)
-* [Tencent Weiyun](https://share.weiyun.com/J1BWWkQF)
+* [Tencent Weiyun](https://share.weiyun.com/car87dsv)
 
 and save model weights to checkpoint dir
 ```bash
