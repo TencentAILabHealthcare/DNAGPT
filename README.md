@@ -53,7 +53,7 @@ python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt0.1b
 # gpt 0.1b multi-organism model
 python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt0.1b_m' --weights 'checkpoints/dna_gpt0.1b_m.pth' --num_samples 10 --max_len 256
 # gpt 3b multi-organism model
-python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt3b_m' --weights 'checkpoints/dna_gpt3b_m' --num_samples 10 --max_len 256
+python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt3b_m' --weights 'checkpoints/dna_gpt3b_m.pth' --num_samples 10 --max_len 256
 ```
 #### Regression
 ```shell
