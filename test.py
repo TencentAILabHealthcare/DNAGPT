@@ -32,7 +32,7 @@ def load_model(model, weight_path, device=None, dtype=None):
         model.load_state_dict(state['model'], strict=False)
     else:
         model.load_state_dict(state, strict=False)
-    print(f"loadding model weights from {weight_path}")
+    print(f"loading model weights from {weight_path}")
     model.to(device=device, dtype=dtype)
     model = model.eval()
     return model

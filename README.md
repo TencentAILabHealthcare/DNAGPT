@@ -17,8 +17,7 @@ You can download the weights from
 
 and save model weights to checkpoint dir
 ```bash
-cd DNAGPT
-mkdir checkpoints
+cd DNAGPT/checkpoints
 # download or copy model weight to this default directory
 ```
 #### Foundation model
@@ -50,11 +49,11 @@ go to directory "scripts" for more test examples.
 #### Generation
 ```bash
 # gpt 0.1b human genomes model
-python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt0.1b_h' --weight 'checkpoints/classification.pth' --num_samples 10 --max_len 256
+python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt0.1b_h' --num_samples 10 --max_len 256
 # gpt 0.1b multi-organism model
-python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt0.1b_m' --weight 'checkpoints/classification.pth' --num_samples 10 --max_len 256
+python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt0.1b_m' --num_samples 10 --max_len 256
 # gpt 3b multi-organism model
-python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt3b_m' --weight 'checkpoints/classification.pth' --num_samples 10 --max_len 256
+python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt3b_m' --num_samples 10 --max_len 256
 ```
 #### Regression
 ```shell
