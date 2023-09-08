@@ -67,7 +67,7 @@ class DNAGPT(GPT):
                 num_splits = len(split_token)
                 stored_tokens = split_token[0]
                 for i in range(num_splits - 1):
-                    stored_tokens = torch.cat((stored_tokens, num_emb[j, i].unsqueeze(0), split_token[i + 1]), dim=0)
+                    stored_tokens = torch.cat((stored_tokens, num_emb.unsqueeze(0)[j], split_token[i + 1]), dim=0)
 
                 output_tokens.append(stored_tokens)
 
@@ -117,14 +117,14 @@ class DNAGPT(GPT):
     @classmethod
     def from_name(cls, name, vocab_size):
         model_cfgs = {
-            'dna_gpt0.1b_s': dict(vocab_size=vocab_size,
-                                  max_len=512,
+            'dna_gpt0.1b_h': dict(vocab_size=vocab_size,
+                                  max_len=4096,
                                   num_layers=12,
                                   num_heads=12,
                                   embedding_dim=768,
                                   bias=False),
             'dna_gpt0.1b_m': dict(vocab_size=vocab_size,
-                                  max_len=4096,
+                                  max_len=512,
                                   num_layers=12,
                                   num_heads=12,
                                   embedding_dim=768,
@@ -139,27 +139,3 @@ class DNAGPT(GPT):
         assert name in model_cfgs, f"unkown model name, only suport: {list(model_cfgs.keys())}"
         cfg = model_cfgs[name]
         return cls(**cfg)
-
-
-class DNAGPTClassifier(GPT):
-
-    def __init__(self,
-                 num_classes,
-                 vocab_size=7,
-                 max_len=1024,
-                 num_layers=3,
-                 num_heads=3,
-                 embedding_dim=48,
-                 bias=True):
-        super().__init__(vocab_size,
-                         max_len,
-                         num_layers,
-                         num_heads,
-                         embedding_dim,
-                         bias=bias,
-                         include_head=False)
-        self.cls_head = nn.Linear(self.embedding_dim, num_classes, bias=bias)
-
-    def forward(self, input_ids):
-        x = super().forward(input_ids)
-        return self.cls_head(x)

@@ -10,7 +10,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
-
+from ..utils import top_k_top_p_filter
 _shape_t = Union[int, List[int], torch.Size]
 
 
@@ -237,7 +237,8 @@ class GPT(nn.Module):
                  max_new_tokens,
                  temperature=1.0,
                  do_sample=False,
-                 top_k=None,
+                 top_k=0,
+                 top_p=0.,
                  stop_ids=None):
         """
         Take a conditioning sequence of indices idx (LongTensor of shape (b,t)) and complete
@@ -252,9 +253,10 @@ class GPT(nn.Module):
             # pluck the logits at the final step and scale by desired temperature
             logits = logits[:, -1, :] / temperature
             # optionally crop the logits to only the top k options
-            if top_k is not None:
-                v, _ = torch.topk(logits, top_k)
-                logits[logits < v[:, [-1]]] = -float('Inf')
+            # if top_k:
+            #     v, _ = torch.topk(logits, top_k)
+            #     logits[logits < v[:, [-1]]] = -float('Inf')
+            logits = top_k_top_p_filter(logits)
             # apply softmax to convert logits to (normalized) probabilities
             probs = F.softmax(logits, dim=-1)
             # either sample from the distribution or take the most likely element

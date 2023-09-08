@@ -22,9 +22,13 @@ mkdir checkpoints
 # download or copy model weight to this default directory
 ```
 #### Foundation model
-* [dna_gpt0.1b_s.pth](https://drive.google.com/file/d/1C0BRXfz7RNtCSjSY1dKQeR1yP7I3wTyx/view?usp=drive_link): DNAGPT 0.1B params model pretrained with human genomes
+* [dna_gpt0.1b_h.pth](https://drive.google.com/file/d/1C0BRXfz7RNtCSjSY1dKQeR1yP7I3wTyx/view?usp=drive_link): DNAGPT 0.1B params model pretrained with human genomes
 * [dna_gpt0.1b_m.pth](https://drive.google.com/file/d/1h6tcP1qncw2uf1d4vRIwIBRUAjgNMtUa/view?usp=drive_link): DNAGPT 0.1B params model pretrained with mutli-organism genomes
 * [dna_gpt3b_m.pth](https://drive.google.com/file/d/18Su9-DGwWaONX6UgVnU5if7ClQXS299Y/view?usp=drive_link): DNAGPT 3B params model pretrained with mutli-organism genomes
+
+### Finetune model
+* [regression.pth](https://drive.google.com/file/d/1_BDbfB5iNmfus3imx1_YSD1ac6OiJkaY/view?usp=drive_link): Half life regression model
+* [classification.pth](https://drive.google.com/file/d/1TdMCiJO6rq32WSka73VdKI0Cthitd9Bb/view?usp=drive_link): GSR classification model
 
 ## Install
 
@@ -38,12 +42,27 @@ pip install -r requirements.txt
 ```
 
 ### Test
-```bash
-python sample.py --input=<your dna data> --weight=<path to the pre-trained weight> --name=<the model you want to use> --num_samples=<number of samples seq>
-```
 ### Example
 ```bash
-python sample.py --input '<R>AGAGAAAAGAGT' --name 'dna_gpt0.1b_s' --num_samples 10
+python test.py --task=<task type> --input=<your dna data> --weight=<path to the pre-trained weight> --name=<the model you want to use> --num_samples=<number of samples seq>
+```
+go to directory "scripts" for more test examples.
+#### Generation
+```bash
+# gpt 0.1b human genomes model
+python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt0.1b_h' --weight 'checkpoints/classification.pth' --num_samples 10 --max_len 256
+# gpt 0.1b multi-organism model
+python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt0.1b_m' --weight 'checkpoints/classification.pth' --num_samples 10 --max_len 256
+# gpt 3b multi-organism model
+python test.py --task 'generation' --input '<R>AGAGAAAAGAGT' --name 'dna_gpt3b_m' --weight 'checkpoints/classification.pth' --num_samples 10 --max_len 256
+```
+#### Regression
+```shell
+python test.py --task 'regression' --input xxxxx --numbers xxxxx --name 'dna_gpt0.1b_h' --weight 'checkpoints/regression.pth'
+```
+#### Classification
+```shell
+python test.py --task 'classification' --input xxxxx --name 'dna_gpt0.1b_m' --weight 'checkpoints/classification.pth'
 ```
 
 ### Tips:
