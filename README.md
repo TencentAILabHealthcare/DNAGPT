@@ -27,7 +27,7 @@ mkdir checkpoints
 * [dna_gpt3b_m.pth](https://drive.google.com/file/d/1pQ3Ai7C-ObzKkKTRwuf6eshVneKHzYEg/view?usp=drive_link): DNAGPT 3B params model pretrained with mutli-organism genomes
 
 ### Finetune model
-* [regression.pth](https://drive.google.com/file/d/1_BDbfB5iNmfus3imx1_YSD1ac6OiJkaY/view?usp=drive_link): Half life regression model
+* [regression.pth](https://drive.google.com/file/d/1_BDbfB5iNmfus3imx1_YSD1ac6OiJkaY/view?usp=drive_link): Experssion level regression model
 * [classification.pth](https://drive.google.com/file/d/1TdMCiJO6rq32WSka73VdKI0Cthitd9Bb/view?usp=drive_link): GSR classification model
 
 ## Install
