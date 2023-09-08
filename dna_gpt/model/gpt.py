@@ -83,7 +83,7 @@ class MultiheadAttention(nn.Module):
         """
         Args；
             x: tensor[bs, seq_len, embedding_dim]
-            attn_mask: 掩盖掉当前时刻之后所有位置的信息
+            attn_mask: mask for masked attention
 
         Returns:
             tensor[bs, seq_len, embedding_dim]

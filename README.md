@@ -22,8 +22,8 @@ mkdir checkpoints
 # download or copy model weight to this default directory
 ```
 #### Foundation model
-* [dna_gpt0.1b_h.pth](https://drive.google.com/file/d/1C0BRXfz7RNtCSjSY1dKQeR1yP7I3wTyx/view?usp=drive_link): DNAGPT 0.1B params model pretrained with human genomes
-* [dna_gpt0.1b_m.pth](https://drive.google.com/file/d/1h6tcP1qncw2uf1d4vRIwIBRUAjgNMtUa/view?usp=drive_link): DNAGPT 0.1B params model pretrained with mutli-organism genomes
+* [dna_gpt0.1b_h.pth](https://drive.google.com/file/d/15m6CH3zaMSqflOaf6ec5VPfiulg-Gh0u/view?usp=drive_link): DNAGPT 0.1B params model pretrained with human genomes
+* [dna_gpt0.1b_m.pth](https://drive.google.com/file/d/1C0BRXfz7RNtCSjSY1dKQeR1yP7I3wTyx/view?usp=drive_link): DNAGPT 0.1B params model pretrained with mutli-organism genomes
 * [dna_gpt3b_m.pth](https://drive.google.com/file/d/18Su9-DGwWaONX6UgVnU5if7ClQXS299Y/view?usp=drive_link): DNAGPT 3B params model pretrained with mutli-organism genomes
 
 ### Finetune model
@@ -69,7 +69,20 @@ python test.py --task 'classification' --input xxxxx --name 'dna_gpt0.1b_m' --we
 1. 'dna_gpt0.1b_m' supports a maximum input length of 24564 bps and 'dna_gpt0.1b_s', 'dna_gpt3b_m' support a maximum input length of 3060 bps. 
 2. The spec_token is set default to 'R' which means human. special token should use with "<", ">", like "<R>"
 
+### Citation
 
+**DNAGPT**
+
+```
+@article{zhang2023dnagpt,
+  title={DNAGPT: A Generalized Pretrained Tool for Multiple DNA Sequence Analysis Tasks},
+  author={Zhang, Daoan and Zhang, Weitong and He, Bing and Zhang, Jianguo and Qin, Chenchen and Yao, Jianhua},
+  journal={bioRxiv},
+  pages={2023--07},
+  year={2023},
+  publisher={Cold Spring Harbor Laboratory}
+}
+```
 
 
 
