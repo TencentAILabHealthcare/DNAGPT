@@ -256,7 +256,7 @@ class GPT(nn.Module):
             # if top_k:
             #     v, _ = torch.topk(logits, top_k)
             #     logits[logits < v[:, [-1]]] = -float('Inf')
-            logits = top_k_top_p_filter(logits)
+            logits = top_k_top_p_filter(logits, top_k=top_k, top_p=top_p)
             # apply softmax to convert logits to (normalized) probabilities
             probs = F.softmax(logits, dim=-1)
             # either sample from the distribution or take the most likely element
