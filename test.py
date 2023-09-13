@@ -132,7 +132,7 @@ if __name__ == '__main__':
     parser.add_argument('--max_len', '-ml', type=int, default=256, help='max length of input token ids')
     parser.add_argument('--temperature', type=float, default=1.0, help='sample temperature')
     parser.add_argument('--topk', type=int, default=0, help='sample topk')
-    parser.add_argument('--topp', type=float, default=0.9, help='sample topp')
+    parser.add_argument('--topp', type=float, default=0.95, help='sample topp')
     parser.add_argument('--seed', default=40, type=int, help='random seed for sampling')
     parser.add_argument('--weight', '-w', default=None, help='path to the weight')
     parser.add_argument('--device', default=None, help='device of the model, cuda or cpu')
